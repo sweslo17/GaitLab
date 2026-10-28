@@ -1,0 +1,44 @@
+{
+  "schema": "gaitlab.public-exploratory.v1",
+  "run_date": "2026-10-28",
+  "source_repo": "https://github.com/AZI350/Smartphone-IMU-Three-Positions-Dataset",
+  "source_license": "CC BY-NC-ND-4.0",
+  "method": "GitHub connector read of unmodified CSV, independent JavaScript port of v0.3 single-axis projected peak detector, NOT Dart production code",
+  "per_step_ground_truth": false,
+  "accuracy_validated": false,
+  "trials": [
+    {
+      "path": "participant_001/pants_pocket/running/trial_01.csv",
+      "blob_sha": "b49521196d25f4d04fc8dd4453d68c56c6008af3",
+      "activity": "running",
+      "raw_rows": 765,
+      "analyzed_rows_after_padding_and_init": 763,
+      "approx_duration_s": 14.6,
+      "median_rate_hz": 52.63,
+      "candidate_peaks": 32,
+      "candidate_median_cadence_spm": 146.52
+    },
+    {
+      "path": "participant_001/pants_pocket/sitting/trial_01.csv",
+      "blob_sha": "8d38be3ed81e774d8393d28634c04e1983479a4f",
+      "activity": "sitting",
+      "raw_rows": 1029,
+      "analyzed_rows_after_padding_and_init": 1027,
+      "approx_duration_s": 19.7,
+      "median_rate_hz": 52.63,
+      "candidate_peaks": 0,
+      "candidate_median_cadence_spm": null
+    },
+    {
+      "path": "participant_001/upper_pocket/running/trial_01.csv",
+      "blob_sha": "9616625045aeb4f7221861d6e8e3ada6234bffa1",
+      "activity": "running",
+      "raw_rows": 770,
+      "analyzed_rows_after_padding_and_init": 768,
+      "approx_duration_s": 14.7,
+      "median_rate_hz": 52.63,
+      "candidate_peaks": 32,
+      "candidate_median_cadence_spm": 139.53
+    }
+  ]
+}
