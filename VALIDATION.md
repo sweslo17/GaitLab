@@ -10,6 +10,14 @@
 - Public dataset exploratory analysis: **three authentic, unmodified CSV contents** retrieved via connected GitHub tool, processed **in JavaScript translation of peak rule**, output saved in `validation/public_exploratory_scan.json` and described in `PUBLIC_DATASETS.md`. **No per-step reference labels** in these 3 files.
 - New source pinned: source Git blob hashes from GitHub repository metadata, no user-controlled or rewritten data bundled.
 
+## Codex-ready baseline: observed CI success (2026-10-28)
+
+- Workflow: https://github.com/sweslo17/GaitLab/actions/runs/40622511044 — **SUCCESS** on commit `1e4584b6454b159c7965e161bd8de900b764c8b9`.
+- **Android**: temporary native runner generated; `flutter analyze` PASS; `flutter test` PASS; Python unit tests PASS; `flutter build apk --debug` PASS.
+- **iOS**: native runner generated on macOS; `flutter analyze` PASS; `flutter test` PASS; `flutter build ios --simulator --no-codesign` PASS.
+- **Public-data Dart replay**: pinned source download and SHA verification PASS; running pants, sitting negative control and running upper-pocket PASS through production GaitEngine.
+- These CI results **do not** test actual phone IMU capture, iPhone device signing, Codex Cloud SDK installation, independent ground-contact truth, or scientific step accuracy.
+
 ## GitHub Actions observation (first v0.4 push)
 
 - Run: https://github.com/sweslo17/GaitLab/actions/runs/40620643787 — **FAILED overall**.
