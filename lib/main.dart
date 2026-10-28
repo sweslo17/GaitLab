@@ -1,4 +1,3 @@
-import 'dart:ui' show FontFeature;
 import 'dart:async';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
@@ -221,13 +220,15 @@ class _SessionScreenState extends State<SessionScreen> with WidgetsBindingObserv
       try { await WakelockPlus.disable(); } catch (error) { failure ??= error; }
       _wakelockEnabled = false;
     }
-    if (mounted) setState(() {
-      _trace = _engine.waveform;
-      _message = failure != null
-          ? '儲存未完全成功：$failure（請檢查匯出的檔案）'
-          : reason ?? '紀錄已儲存。可匯出 6 份測量及診斷檔案。';
-      _busy = false;
-    });
+    if (mounted) {
+      setState(() {
+        _trace = _engine.waveform;
+        _message = failure != null
+            ? '儲存未完全成功：$failure（請檢查匯出的檔案）'
+            : reason ?? '紀錄已儲存。可匯出 6 份測量及診斷檔案。';
+        _busy = false;
+      });
+    }
   }
 
   Future<void> _export() async {

@@ -4,14 +4,20 @@
 import 'dart:convert';
 import 'dart:io';
 
-import '../lib/gait_engine.dart';
+import 'package:gaitlab/gait_engine.dart';
 
 void main(List<String> args) {
   String? file, activity, out;
   for (var i = 0; i < args.length; i++) {
-    if (args[i] == '--file' && i + 1 < args.length) file = args[++i];
-    else if (args[i] == '--activity' && i + 1 < args.length) activity = args[++i];
-    else if (args[i] == '--out' && i + 1 < args.length) out = args[++i];
+    if (args[i] == '--file' && i + 1 < args.length) {
+      file = args[++i];
+    }
+    else if (args[i] == '--activity' && i + 1 < args.length) {
+      activity = args[++i];
+    }
+    else if (args[i] == '--out' && i + 1 < args.length) {
+      out = args[++i];
+    }
   }
   if (file == null || activity == null || !{'running', 'sitting'}.contains(activity)) {
     stderr.writeln('Usage: dart run tools/replay_public.dart --file FILE --activity running|sitting [--out FILE]');
@@ -26,7 +32,9 @@ void main(List<String> args) {
   }
   final lines = input.readAsLinesSync();
   if (lines.length < 3) {
-    stderr.writeln('Empty trial'); exitCode = 2; return;
+    stderr.writeln('Empty trial');
+    exitCode = 2;
+    return;
   }
   final columns = lines.first.trim().split(',');
   int index(String name) {
@@ -46,9 +54,13 @@ void main(List<String> args) {
   final acceptedEventTimes = <int>[];
   final detectedStepTimes = <int>[];
   for (final line in lines.skip(1)) {
-    if (line.trim().isEmpty) continue;
+    if (line.trim().isEmpty) {
+      continue;
+    }
     final cells = line.split(',');
-    if (cells.length != columns.length) throw FormatException('Malformed row ${samples + 2}');
+    if (cells.length != columns.length) {
+      throw FormatException('Malformed row ${samples + 2}');
+    }
     if (cells[labelIdx].trim().toLowerCase() != activity) {
       throw FormatException('Unexpected activity at row ${samples + 2}');
     }
@@ -66,8 +78,11 @@ void main(List<String> args) {
     final us = (milliseconds * 1000).round();
     final result = e.process(timestampUs: us, ax: ax, ay: ay, az: az);
     samples++;
-    if (!result.accepted) rejected++;
-    else acceptedEventTimes.add(us);
+    if (!result.accepted) {
+      rejected++;
+    } else {
+      acceptedEventTimes.add(us);
+    }
     if (result.stepDetected && result.stepTimestampUs != null) {
       detectedStepTimes.add(result.stepTimestampUs!);
     }

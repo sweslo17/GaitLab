@@ -10,6 +10,13 @@
 - Public dataset exploratory analysis: **three authentic, unmodified CSV contents** retrieved via connected GitHub tool, processed **in JavaScript translation of peak rule**, output saved in `validation/public_exploratory_scan.json` and described in `PUBLIC_DATASETS.md`. **No per-step reference labels** in these 3 files.
 - New source pinned: source Git blob hashes from GitHub repository metadata, no user-controlled or rewritten data bundled.
 
+## GitHub Actions observation (first v0.4 push)
+
+- Run: https://github.com/sweslo17/GaitLab/actions/runs/40620643787 — **FAILED overall**.
+- `public-dataset-replay`: **PASS** (download + SHA-verified AZI350 trials, 3 official Dart replays). This proves replay/smoke criteria only, not real contact accuracy.
+- `android` and `ios`: **FAILED** at `flutter analyze` because of 8 lint warnings (`unnecessary_import`, `curly_braces_in_flow_control_structures`, `avoid_relative_lib_imports`). Platform builds and Flutter tests were not reached.
+- The repository bootstrap/Codex fix commit addresses these issues. **Do not claim success until a new workflow run finishes.**
+
 ## Not executed
 
 - `dart run tools/replay_public.dart` with downloaded data: **NOT RUN**, since Dart SDK is unavailable locally.

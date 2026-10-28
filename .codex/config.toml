@@ -1,0 +1,4 @@
+# Optional project-level defaults. Codex loads this only for trusted workspaces.
+# If your Codex account does not offer this model, select an available model in the UI.
+model = "gpt-6.1-sol"
+model_reasoning_effort = "high"

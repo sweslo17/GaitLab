@@ -22,14 +22,18 @@ Cross-platform Flutter **source project** for a phone tightly attached to the ce
 ## Get started
 
 ```bash
-unzip GaitLab-Flutter-v0.4.zip
-cd GaitLab-Flutter-v0.4
+git clone https://github.com/sweslo17/GaitLab.git
+cd GaitLab
+git switch -c develop
 bash scripts/bootstrap.sh
 bash scripts/verify_local.sh
-flutter run
+flutter devices
+flutter run -d YOUR_DEVICE_ID
 ```
 
-`bootstrap.sh` generates the standard native `android/` and `ios/` folders via `flutter create`, applies `NSMotionUsageDescription` and the iOS deployment target, and resolves dependencies. The package includes its Dart sources and tests, **not generated native runners**. On iOS, Xcode and device signing are required for a physical device.
+For Codex Local, open this checkout; Codex will read `AGENTS.md` and (if trusted) `.codex/config.toml`. For Codex Cloud, see [Codex setup](docs/CODEX_SETUP.md). For algorithm design and next validation milestones, see [roadmap](docs/ROADMAP.md). **No ZIP or GitHub Release is required.**
+
+`bootstrap.sh` generates only **missing** native `android/` and (on macOS) `ios/` folders via a temporary `flutter create` project without overwriting tracked files, applies `NSMotionUsageDescription` and the iOS deployment target, and resolves dependencies. The package includes its Dart sources and tests, **not generated native runners**. On iOS, Xcode and device signing are required for a physical device.
 
 The verify script returns a **nonzero error** if Flutter is unavailable; it does not silently mark Dart checks as passed. To run only executable Python checks:
 
@@ -37,7 +41,7 @@ The verify script returns a **nonzero error** if Flutter is unavailable; it does
 bash scripts/verify_local.sh --python-only
 ```
 
-An optional `.github/workflows/verify.yml` creates Android and iOS runners and requests `flutter analyze`, `flutter test`, Android debug APK build and iOS simulator build after pushing the folder to GitHub. **The CI workflow has not been run in this environment.**
+The `.github/workflows/verify.yml` CI creates Android and iOS runners and requests `flutter analyze`, `flutter test`, Android debug APK build and iOS simulator build after pushing the folder to GitHub. **The CI workflow has not been run in this environment.**
 
 ## Recording test protocol
 
@@ -101,3 +105,12 @@ The public-data plan, provenance, limitations and ready-to-run commands are in [
 - Flutter sensor API: [sensors_plus](https://pub.dev/packages/sensors_plus)
 
 The algorithm in this repo is experimental/original; it is not represented as an independently validated translation of published research.
+
+## Codex handoff
+
+- Repository-level rules: [AGENTS.md](AGENTS.md)
+- Local Mac + Cloud provisioning and physical devices: [docs/CODEX_SETUP.md](docs/CODEX_SETUP.md)
+- Research decisions and engineering milestones: [docs/ROADMAP.md](docs/ROADMAP.md)
+- Live CI: https://github.com/sweslo17/GaitLab/actions
+
+This repo is the canonical project, not the older ZIP bundles. Cloud tasks may run without releasing an APK/IPA. To use the latest local branch in a cloud task, push **that branch** when ready; do not merge into `main` or publish a mobile store release by default.

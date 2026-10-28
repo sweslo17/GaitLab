@@ -1,20 +1,23 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(dirname "$0")/.."
-bash -n scripts/bootstrap.sh
+
+bash -n scripts/bootstrap.sh scripts/verify_local.sh scripts/codex_cloud_setup.sh
 python3 -m py_compile tools/*.py
 python3 -m unittest discover -s tools -p 'test_*.py' -v
-if [[ "${1:-}" == '--python-only' ]]; then
-  echo 'SKIPPED: Flutter analyzer, Flutter tests, Android/iOS builds (python-only requested).'
+
+if [[ "${1:-}" == "--python-only" ]]; then
+  echo "SKIPPED by request: Flutter analysis, Dart tests and platform builds."
   exit 0
 fi
+
 if ! command -v flutter >/dev/null 2>&1; then
-  echo 'INCOMPLETE: Flutter SDK unavailable; cannot mark Flutter verification as passed.' >&2
+  echo "UNVERIFIED: Flutter not installed; install it before accepting this build." >&2
   exit 2
 fi
-if [[ ! -d android || ! -d ios ]]; then
-  bash scripts/bootstrap.sh
-fi
+
+bash scripts/bootstrap.sh
 flutter analyze
 flutter test
-printf '\nPASS: local static analysis and tests. Run platform builds separately.\n'
+echo "PASS: Python unit tests, flutter analyze, flutter test."
+echo "NOT CHECKED HERE: APK/iOS build, device telemetry, ground-truth accuracy."

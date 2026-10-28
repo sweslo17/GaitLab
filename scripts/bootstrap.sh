@@ -1,57 +1,69 @@
 #!/usr/bin/env bash
+# Generate native runners without allowing 'flutter create' to modify tracked app code.
 set -euo pipefail
 cd "$(dirname "$0")/.."
+
 if ! command -v flutter >/dev/null 2>&1; then
-  echo 'Flutter not found. Install Flutter 3.47.7+ and run flutter doctor first.' >&2
-  exit 1
+  echo "Flutter SDK not found. Install Flutter 3.47.7+ (or use scripts/codex_cloud_setup.sh)." >&2
+  exit 2
 fi
-# Generate standard Android/iOS runner projects. Safeguard all source files.
-backup="$(mktemp -d)"
-trap 'rm -rf "$backup"' EXIT
-cp pubspec.yaml "$backup/pubspec.yaml"
-cp -R lib "$backup/lib"
-cp -R test "$backup/test"
-flutter create --platforms=android,ios --org dev.gaitlab --project-name gaitlab .
-cp "$backup/pubspec.yaml" pubspec.yaml
-rm -rf lib test
-cp -R "$backup/lib" lib
-cp -R "$backup/test" test
-# Required by sensors_plus for iOS motion data access.
-if [[ -f ios/Runner/Info.plist ]]; then
-  if ! grep -q NSMotionUsageDescription ios/Runner/Info.plist; then
-    if command -v /usr/libexec/PlistBuddy >/dev/null 2>&1; then
-      /usr/libexec/PlistBuddy -c 'Add :NSMotionUsageDescription string GaitLab 需要存取動作感測器以分析跑步步頻與晃動。' ios/Runner/Info.plist
-    else
-      # Flutter iOS scaffold uses XML plist; add key above final dict close.
-      sed -i.bak '/<\/dict>/i\
-\t<key>NSMotionUsageDescription</key>\
-\t<string>GaitLab needs motion sensors to analyze running gait.</string>\
-' ios/Runner/Info.plist
-      rm -f ios/Runner/Info.plist.bak
+if ! command -v python3 >/dev/null 2>&1; then
+  echo "Python 3 is needed for iOS settings and offline validation." >&2
+  exit 2
+fi
+
+platforms=()
+if [[ ! -d android ]]; then platforms+=(android); fi
+if [[ "$(uname -s)" == "Darwin" && ! -d ios ]]; then platforms+=(ios); fi
+
+if (( ${#platforms[@]} > 0 )); then
+  tmp="$(mktemp -d)"
+  trap 'rm -rf "$tmp"' EXIT
+  joined="$(IFS=,; echo "${platforms[*]}")"
+  flutter create --no-pub --project-name gaitlab --org dev.gaitlab \
+    --platforms="$joined" "$tmp/gaitlab"
+  for platform in "${platforms[@]}"; do
+    if [[ ! -d "$tmp/gaitlab/$platform" ]]; then
+      echo "Missing generated $platform runner; refusing to continue." >&2
+      exit 1
     fi
-  fi
+    cp -R "$tmp/gaitlab/$platform" "./$platform"
+  done
 fi
-# Flutter 3.47 supports iOS 15+; keep the generated runner aligned with
-# current simulator requirements, regardless of the template's old default.
-if [[ -f ios/Runner.xcodeproj/project.pbxproj ]]; then
+
+# iOS runner needs a meaningful motion permission explanation and iOS 15 baseline.
+if [[ -f ios/Runner/Info.plist ]]; then
   python3 - <<'PYIOS'
 from pathlib import Path
+import plistlib
 import re
-p = Path('ios/Runner.xcodeproj/project.pbxproj')
-s = p.read_text()
-s = re.sub(r'IPHONEOS_DEPLOYMENT_TARGET = [0-9.]+;',
-           'IPHONEOS_DEPLOYMENT_TARGET = 15.0;', s)
-p.write_text(s)
-p = Path('ios/Podfile')
-if p.exists():
-    s = p.read_text()
-    if re.search(r"^\s*#?\s*platform\s+:ios,", s, flags=re.M):
-        s = re.sub(r"^\s*#?\s*platform\s+:ios,.*$",
-                   "platform :ios, '15.0'", s, count=1, flags=re.M)
+plist = Path("ios/Runner/Info.plist")
+with plist.open("rb") as f:
+    data = plistlib.load(f)
+if not data.get("NSMotionUsageDescription"):
+    data["NSMotionUsageDescription"] = (
+        "GaitLab needs motion sensors to estimate running cadence and gait variability."
+    )
+    plist.write_bytes(plistlib.dumps(data))
+project = Path("ios/Runner.xcodeproj/project.pbxproj")
+if project.exists():
+    original = project.read_text()
+    updated = re.sub(r"IPHONEOS_DEPLOYMENT_TARGET = [0-9.]+;",
+                     "IPHONEOS_DEPLOYMENT_TARGET = 15.0;", original)
+    if updated != original:
+        project.write_text(updated)
+podfile = Path("ios/Podfile")
+if podfile.exists():
+    original = podfile.read_text()
+    replacement = "platform :ios, '15.0'"
+    if re.search(r"^\s*#?\s*platform\s+:ios,", original, re.M):
+        updated = re.sub(r"^\s*#?\s*platform\s+:ios,.*$",
+                         replacement, original, count=1, flags=re.M)
     else:
-        s = "platform :ios, '15.0'\n" + s
-    p.write_text(s)
+        updated = replacement + "\n" + original
+    if updated != original:
+        podfile.write_text(updated)
 PYIOS
 fi
 flutter pub get
-printf '\nReady. Connect a physical device, then run: flutter run\n'
+echo "Ready: run 'bash scripts/verify_local.sh' or 'flutter run -d DEVICE_ID'."
