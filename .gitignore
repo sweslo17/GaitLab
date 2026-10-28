@@ -1,0 +1,13 @@
+.dart_tool/
+.flutter-plugins*
+.packages
+build/
+.idea/
+.metadata
+**/Pods/
+**/.gradle/
+**/DerivedData/
+*.iml
+# Downloaded third-party datasets are not redistributed
+data/public/
+reports/public/
