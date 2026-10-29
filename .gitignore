@@ -11,3 +11,5 @@ build/
 # Downloaded third-party datasets are not redistributed
 data/public/
 reports/public/
+.venv/
+__pycache__/

@@ -3,7 +3,7 @@
 ## Product decisions (2026-10-28)
 - Main user: runner with a phone fixed in a running waist belt, ideally rear center. Both Android and iOS supported.
 - Flutter UI and shared pure-Dart gait engine; phone accelerometer + gyroscope, target ~100 Hz, measure actual sample rate and dropouts.
-- v0.4: foreground-only on both platforms; stop cleanly on background/lost sensor feed. Android background foreground-service recording is a **future feature**, not implemented.
+- v0.7: Android uses a user-started health foreground service and CPU wake lock for screen-off recording. iOS remains foreground-only. No automatic recording restart after force stop or process death.
 - Candidate peak timestamps, cadence, step-time CV, vertical-axis dynamic acceleration and periodicity are **experimental movement characteristics**, not medical gait metrics.
 - Raw events and metadata retained for reproducibility; separate independent streams rather than false accelerometer/gyro synchronization.
 - Python standard-library QA and optional plotting (uv-friendly); no web service, account, or telemetry upload.
@@ -26,3 +26,11 @@
 - Separate performance by pace, hardware, belt placement and participant; show false positives from standing, turns, starts and stops.
 - Do not tune detector parameters using the held-out evaluation subjects.
 - Track PASS, FAIL and NOT RUN in `VALIDATION.md` and link a CI run or local command output for every new claim.
+
+## v0.5 local implementation evidence (2026-10-28)
+
+Optional cadence targets, one-second trend charts, time-weighted quality coverage and seven-file export are implemented. Android installation and a 31-second foreground recording on Samsung SM S9210 pass file-integrity checks. See VALIDATION.md and validation/device_smoke_2026-10-28.json. This is acquisition evidence; actual belt-mounted running count and event accuracy remain unverified.
+
+## v0.8 exploratory motion signals (2026-10-28)
+
+Motion-state timeline, vector acceleration/gyro RMS and conditional rear-waist direction calibration are implemented. They are experimental signal descriptors, not validated walk/run labels, route turns or pelvis kinematics. The raw detector is unchanged. Next scientific gate: synchronized video activity intervals, reference IMU/motion capture, repeated mounting calibration, and unplugged long-duration recording with battery measurement. See FEATURE_STATUS.md, METRIC_ASSESSMENT.md and VALIDATION.md.

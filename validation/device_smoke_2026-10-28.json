@@ -1,0 +1,28 @@
+{
+  "schema": "gaitlab.device-smoke.v1",
+  "date": "2026-10-28",
+  "app_version": "0.5.0+5",
+  "device_model": "SM S9210",
+  "android_api": 36,
+  "installation": "PASS",
+  "foreground_sensor_capture": "PASS",
+  "seven_files_present": true,
+  "accelerometer_samples": 3520,
+  "gyroscope_samples": 3519,
+  "rejected_accelerometer_samples": 0,
+  "recording_duration_s": 30.72019,
+  "sensor_duration_s": 30.68438,
+  "median_sampling_hz": 114.68,
+  "metric_bins": 31,
+  "metric_duration_sum_s": 30.68438,
+  "metric_duration_matches_sensor_span": true,
+  "target_captured": {
+    "min_spm": 160,
+    "max_spm": 180
+  },
+  "target_percentage_unavailable_when_no_eligible_cadence": true,
+  "qa_integrity_ok": true,
+  "running_accuracy": "NOT RUN: no independent step reference in this device smoke test",
+  "apk_sha256": "0db3a8e03180116f079cd8ff89a26a307449444ea1ad8691c97c5cb7067c4e13",
+  "installed_apk_matches_final_build": true
+}

@@ -1,0 +1,13 @@
+{
+  "app_version": "0.6.0+6",
+  "device": "SM S9210",
+  "installed_apk_matches_build": true,
+  "apk_sha256": "06ac7b64117c8b4bc70f1ffdbb212338dc1540ce4f59b24faa0cbc78d6358a67",
+  "flutter_tests": 49,
+  "flutter_analysis": "PASS",
+  "android_build": "PASS",
+  "installation": "PASS",
+  "review": "No actionable findings",
+  "phone_visual_inspection": "NOT RUN: phone locked during this update; narrow-screen and 1.6x text widget checks PASS",
+  "running_accuracy": "NOT RUN"
+}

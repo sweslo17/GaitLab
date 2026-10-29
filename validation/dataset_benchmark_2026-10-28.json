@@ -1,0 +1,221 @@
+{
+  "date": "2026-10-28",
+  "engine": "Unchanged production GaitEngine, peakMultiplier 0.62",
+  "warning": "Replay PASS means execution only; references and input domain differ across datasets.",
+  "datasets": {
+    "clemson": {
+      "Clemson/Irregular": {
+        "trials": 30,
+        "replay_pass": 30,
+        "replay_fail": 0,
+        "reference_scored_trials": 29,
+        "candidate_steps": 5096,
+        "nonzero_trials": 30,
+        "reference_steps": 5139,
+        "predicted_steps_in_scored_windows": 4908,
+        "signed_total_error_percent": -4.495037945125511,
+        "weighted_absolute_error_percent": 13.212687293247713,
+        "median_absolute_trial_error_percent": 10.945273631840797
+      },
+      "Clemson/Regular": {
+        "trials": 30,
+        "replay_pass": 30,
+        "replay_fail": 0,
+        "reference_scored_trials": 29,
+        "candidate_steps": 31241,
+        "nonzero_trials": 30,
+        "reference_steps": 30425,
+        "predicted_steps_in_scored_windows": 30240,
+        "signed_total_error_percent": -0.6080525883319639,
+        "weighted_absolute_error_percent": 0.8184059161873459,
+        "median_absolute_trial_error_percent": 0.5469462169553327
+      },
+      "Clemson/SemiRegular": {
+        "trials": 30,
+        "replay_pass": 30,
+        "replay_fail": 0,
+        "reference_scored_trials": 30,
+        "candidate_steps": 20844,
+        "nonzero_trials": 30,
+        "reference_steps": 19917,
+        "predicted_steps_in_scored_windows": 20844,
+        "signed_total_error_percent": 4.654315408947131,
+        "weighted_absolute_error_percent": 6.662649997489582,
+        "median_absolute_trial_error_percent": 3.9695470326125584
+      }
+    },
+    "zenodo": {
+      "apple_watch/drop": {
+        "trials": 96,
+        "replay_pass": 96,
+        "replay_fail": 0,
+        "reference_scored_trials": 0,
+        "candidate_steps": 284,
+        "nonzero_trials": 95
+      },
+      "apple_watch/heel": {
+        "trials": 103,
+        "replay_pass": 103,
+        "replay_fail": 0,
+        "reference_scored_trials": 0,
+        "candidate_steps": 520,
+        "nonzero_trials": 101
+      },
+      "apple_watch/jogging": {
+        "trials": 88,
+        "replay_pass": 88,
+        "replay_fail": 0,
+        "reference_scored_trials": 0,
+        "candidate_steps": 975,
+        "nonzero_trials": 86
+      },
+      "apple_watch/running": {
+        "trials": 86,
+        "replay_pass": 86,
+        "replay_fail": 0,
+        "reference_scored_trials": 0,
+        "candidate_steps": 893,
+        "nonzero_trials": 85
+      },
+      "apple_watch/walking": {
+        "trials": 96,
+        "replay_pass": 95,
+        "replay_fail": 1,
+        "reference_scored_trials": 0,
+        "candidate_steps": 923,
+        "nonzero_trials": 90
+      },
+      "harvard/running": {
+        "trials": 657,
+        "replay_pass": 657,
+        "replay_fail": 0,
+        "reference_scored_trials": 0,
+        "candidate_steps": 5832,
+        "nonzero_trials": 651
+      }
+    },
+    "running_imu": {
+      "Running_IMU/v15": {
+        "trials": 57,
+        "replay_pass": 57,
+        "replay_fail": 0,
+        "reference_scored_trials": 0,
+        "candidate_steps": 371,
+        "nonzero_trials": 57
+      },
+      "Running_IMU/v20": {
+        "trials": 62,
+        "replay_pass": 62,
+        "replay_fail": 0,
+        "reference_scored_trials": 0,
+        "candidate_steps": 298,
+        "nonzero_trials": 62
+      },
+      "Running_IMU/v25": {
+        "trials": 54,
+        "replay_pass": 54,
+        "replay_fail": 0,
+        "reference_scored_trials": 0,
+        "candidate_steps": 155,
+        "nonzero_trials": 52
+      }
+    },
+    "azi350": {
+      "azi350/downstairs": {
+        "trials": 81,
+        "replay_pass": 81,
+        "replay_fail": 0,
+        "reference_scored_trials": 0,
+        "candidate_steps": 1800,
+        "nonzero_trials": 78
+      },
+      "azi350/running": {
+        "trials": 79,
+        "replay_pass": 79,
+        "replay_fail": 0,
+        "reference_scored_trials": 0,
+        "candidate_steps": 2561,
+        "nonzero_trials": 77
+      },
+      "azi350/sit_to_stand": {
+        "trials": 81,
+        "replay_pass": 81,
+        "replay_fail": 0,
+        "reference_scored_trials": 0,
+        "candidate_steps": 129,
+        "nonzero_trials": 63
+      },
+      "azi350/sitting": {
+        "trials": 82,
+        "replay_pass": 82,
+        "replay_fail": 0,
+        "reference_scored_trials": 0,
+        "candidate_steps": 105,
+        "nonzero_trials": 26
+      },
+      "azi350/stand_to_sit": {
+        "trials": 81,
+        "replay_pass": 81,
+        "replay_fail": 0,
+        "reference_scored_trials": 0,
+        "candidate_steps": 132,
+        "nonzero_trials": 60
+      },
+      "azi350/standing": {
+        "trials": 86,
+        "replay_pass": 86,
+        "replay_fail": 0,
+        "reference_scored_trials": 0,
+        "candidate_steps": 154,
+        "nonzero_trials": 32
+      },
+      "azi350/upstairs": {
+        "trials": 80,
+        "replay_pass": 80,
+        "replay_fail": 0,
+        "reference_scored_trials": 0,
+        "candidate_steps": 1693,
+        "nonzero_trials": 78
+      },
+      "azi350/walking": {
+        "trials": 76,
+        "replay_pass": 76,
+        "replay_fail": 0,
+        "reference_scored_trials": 0,
+        "candidate_steps": 2192,
+        "nonzero_trials": 72
+      }
+    },
+    "walkrec": {
+      "WalkRec/walking and nonwalking natural activity": {
+        "trials": 142,
+        "replay_pass": 142,
+        "replay_fail": 0,
+        "reference_scored_trials": 120,
+        "candidate_steps": 15547,
+        "nonzero_trials": 142,
+        "reference_steps": 11545,
+        "predicted_steps_in_scored_windows": 12720,
+        "signed_total_error_percent": 10.17756604590732,
+        "weighted_absolute_error_percent": 11.892594196621914,
+        "median_absolute_trial_error_percent": 7.352941176470588
+      }
+    },
+    "cambridge": {
+      "Cambridge/walking": {
+        "trials": 132,
+        "replay_pass": 132,
+        "replay_fail": 0,
+        "reference_scored_trials": 117,
+        "candidate_steps": 12290,
+        "nonzero_trials": 132,
+        "reference_steps": 9122,
+        "predicted_steps_in_scored_windows": 9177,
+        "signed_total_error_percent": 0.6029379522034641,
+        "weighted_absolute_error_percent": 3.3216399912299934,
+        "median_absolute_trial_error_percent": 1.5625
+      }
+    }
+  },
+  "missing_reports": []
+}

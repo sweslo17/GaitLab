@@ -1,0 +1,65 @@
+{
+  "schema": "gaitlab.screen-off-smoke.v1",
+  "date": "2026-10-28",
+  "app_version": "0.7.0+7",
+  "device_model": "SM S9210",
+  "android_api": 36,
+  "connection": "USB",
+  "installation": "PASS",
+  "flutter_analysis": "PASS",
+  "flutter_tests": {
+    "status": "PASS",
+    "count": 58
+  },
+  "android_arm64_debug_build": "PASS",
+  "apk_sha256": "3e71ea1489aaa4cfc64780e0df1d492a60e62abea07bbbe32d96e5c8777e5912",
+  "installed_apk_sha256": "3e71ea1489aaa4cfc64780e0df1d492a60e62abea07bbbe32d96e5c8777e5912",
+  "installed_apk_matches_final_build": true,
+  "screen_off_continuity": {
+    "status": "PASS",
+    "start_utc": "2026-10-28T07:35:27Z",
+    "end_utc": "2026-10-28T07:36:30Z",
+    "wall_interval_s": 63,
+    "sensor_interval_s": 62.954091,
+    "power_state": "Dozing (non-interactive Samsung always-on display)",
+    "partial_cpu_lock_held_at_both_observations": true,
+    "accelerometer_new_rows_between_file_observations": 7209,
+    "gyroscope_new_rows_between_file_observations": 7209,
+    "accelerometer_samples_in_native_timestamp_window": 7220,
+    "gyroscope_samples_in_native_timestamp_window": 7220
+  },
+  "whole_session": {
+    "sensor_duration_s": 178.545985,
+    "accelerometer": {
+      "samples": 20478,
+      "non_increasing_intervals": 0,
+      "max_gap_ms": 8.726,
+      "median_hz": 114.69205184080744,
+      "samples_in_screen_off_window": 7220
+    },
+    "gyroscope": {
+      "samples": 20473,
+      "non_increasing_intervals": 0,
+      "max_gap_ms": 8.723,
+      "median_hz": 114.69205184080744,
+      "samples_in_screen_off_window": 7220
+    },
+    "metric_bins": 179,
+    "seven_files_present": true,
+    "qa_integrity_ok": true,
+    "sampling_gaps": 0
+  },
+  "metadata_recording_mode": "android_health_foreground_service_with_cpu_wake_lock",
+  "notification_stop_and_save": "PASS",
+  "stop_reason": "已由通知停止並儲存。",
+  "recording_service_removed": true,
+  "recording_cpu_lock_released": true,
+  "app_logcat_errors_observed": false,
+  "limitations": [
+    "USB-connected stationary smoke test only",
+    "Unplugged endurance and battery consumption NOT RUN",
+    "No independent step reference; gait accuracy NOT RUN",
+    "iOS background recording NOT RUN and unsupported",
+    "Process death, force stop, reboot and task removal do not resume recording"
+  ]
+}

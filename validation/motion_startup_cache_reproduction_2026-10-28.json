@@ -1,0 +1,72 @@
+{
+  "schema": "gaitlab.motion-device-smoke.v1",
+  "date": "2026-10-28",
+  "app_version": "0.8.0+8",
+  "device_model": "SM S9210",
+  "android_api": 36,
+  "apk_sha256": "2ca1ffc7fc05384b8743a1d0c3e42543b576cece56e2c9d7734f2ae3aab903a6",
+  "installed_apk_matches_final_build": true,
+  "flutter_tests": {
+    "status": "PASS",
+    "count": 79
+  },
+  "flutter_analyze": "PASS",
+  "android_arm64_debug_build": "PASS",
+  "installation": "PASS",
+  "seven_files_present": true,
+  "accelerometer": {
+    "samples": 17665,
+    "non_increasing": 0,
+    "max_gap_ms": 167528.255,
+    "samples_in_off_timestamp_window": 10753
+  },
+  "gyroscope": {
+    "samples": 17661,
+    "non_increasing": 0,
+    "max_gap_ms": 167536.973,
+    "samples_in_off_timestamp_window": 10753
+  },
+  "screen_off": {
+    "start_utc": "2026-10-28T08:10:55Z",
+    "end_utc": "2026-10-28T08:12:29Z",
+    "wall_interval_s": 94,
+    "sensor_interval_s": 93.758973,
+    "power_state": "Dozing, non-interactive Samsung AOD",
+    "cpu_lock_held_at_both_observations": true,
+    "usb_connected": true
+  },
+  "motion": {
+    "bins": 156,
+    "duration_s": 321.539841,
+    "sensor_duration_s": 321.539841,
+    "state_duration_s": 321.539841,
+    "state_seconds": {
+      "unavailable": 173,
+      "rotation": 0,
+      "quiet": 115.53984100000002,
+      "rhythmic": 26,
+      "other": 7
+    },
+    "all_numeric_bin_values_finite": true,
+    "duration_matches": true,
+    "calibration_status": "disabled",
+    "body_direction_results_withheld": true
+  },
+  "stop_reason": "已由通知停止並儲存。",
+  "service_removed": true,
+  "cpu_lock_released": true,
+  "app_log_errors": false,
+  "limits": [
+    "USB-connected short engineering smoke only",
+    "Body direction calibration hardware accuracy NOT RUN; disabled in this test",
+    "Activity labels, candidate events and angular-speed accuracy have no independent reference",
+    "Unplugged endurance, battery use and iOS background recording NOT RUN"
+  ],
+  "overall": "FAIL: startup cached event inflated derived duration",
+  "recording_start_cache_bug": {
+    "first_accel_timestamp_before_new_recording": true,
+    "gap_s": 167.528255,
+    "gap_location": "between cached prior-session event and first fresh event, before controlled screen-off window",
+    "raw_integrity_check_did_not_detect_duration_inflation": true
+  }
+}

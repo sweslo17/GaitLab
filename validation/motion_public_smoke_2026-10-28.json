@@ -1,0 +1,55 @@
+{
+  "execution": "PASS",
+  "input_sha256_verified": true,
+  "trials": [
+    {
+      "file": "data/public/azi350_normalized/participant_001/pants_pocket/sitting/trial_01.csv",
+      "normalized_sha256": "5184295317a5b08dea682f1ee041e7779185b687d9b2341ad8d1eb67d76b3057",
+      "source_git_blob_sha1": "8d38be3ed81e774d8393d28634c04e1983479a4f",
+      "activity": "sitting",
+      "state_seconds": {
+        "unavailable": 19.715,
+        "rotation": 0.0,
+        "quiet": 0.0,
+        "rhythmic": 0.0,
+        "other": 0.0
+      },
+      "rejected_accel_samples": 0,
+      "calibration_status": "disabled",
+      "bins": 16
+    },
+    {
+      "file": "data/public/azi350_normalized/participant_001/pants_pocket/running/trial_01.csv",
+      "normalized_sha256": "a44b05666685349ee14ad57fd8af236020b335cd673f7fcf786a16f526b65a71",
+      "source_git_blob_sha1": "b49521196d25f4d04fc8dd4453d68c56c6008af3",
+      "activity": "running",
+      "state_seconds": {
+        "unavailable": 5.0,
+        "rotation": 0.0,
+        "quiet": 0.0,
+        "rhythmic": 7.5809999999999995,
+        "other": 2.0
+      },
+      "rejected_accel_samples": 0,
+      "calibration_status": "disabled",
+      "bins": 11
+    },
+    {
+      "file": "data/public/azi350_normalized/participant_001/pants_pocket/walking/trial_01.csv",
+      "normalized_sha256": "ff4690d823840214e53839ce8258702c9dc85307ff93725a22ff73e76e3c5cb4",
+      "source_git_blob_sha1": "7d13aaf6fc656e1524ccb6c7a93a5b2285d8f026",
+      "activity": "walking",
+      "state_seconds": {
+        "unavailable": 5.0,
+        "rotation": 0.0,
+        "quiet": 0.0,
+        "rhythmic": 0.0,
+        "other": 14.728000000000002
+      },
+      "rejected_accel_samples": 0,
+      "calibration_status": "disabled",
+      "bins": 16
+    }
+  ],
+  "interpretation": "Activity-label smoke only. Acceleration-only normalized inputs; gyro withheld. No event or state accuracy score; pocket placement is not rear waist. Body calibration disabled."
+}

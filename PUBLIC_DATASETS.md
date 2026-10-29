@@ -2,12 +2,20 @@
 
 This project deliberately separates **replay/smoke testing** from **ground-truth event accuracy**. A running-activity label is **not** a stride/foot-contact label. **No public dataset can establish accuracy for a specific phone bouncing in an individual's belt.**
 
-## Priority datasets
+## Executed benchmark — 2026-10-28
+
+All seven datasets discussed in this session are now downloaded locally. See [the actual results and limitations](docs/DATASET_VALIDATION_2026-10-28.md), [machine summary](validation/dataset_benchmark_2026-10-28.json), and [metric assessment](docs/METRIC_ASSESSMENT.md). The engine and detection parameters remain unchanged.
+
+Full-data activity controls expose candidate triggers in 26/82 sitting and 32/86 standing AZI350 trials. This supersedes any inference from the earlier single sitting example. Replay success does not establish count accuracy. Running_IMU reference MAT contains stance/stride durations, not contact timestamps or complete counts. The Apple archive also differs from its published description; use the actual archive inventory before scoring.
+
+Cambridge and Clemson supply independent reference counts. WalkRec supplies combined leg-phone detections and corrected counts, with source disagreements and window mismatches withheld. No running dataset in this run supports a defensible complete running-step accuracy score yet.
+
+## Dataset source descriptions
 
 | Dataset | Data and reference | Match to GaitLab | Limits | Download/license |
 |---|---|---|---|---|
-| Ghaffarzadeh et al., 2026 | ~100 Hz waist Apple Watch and 1 kHz force plate; jogging/running, 492 curated trials / 395 triad-complete | **Excellent for independent contact ground truth** | IMU is a waist-worn **watch**, not a phone; `userAcceleration` is *gravity removed*, unlike GaitLab raw acceleration | https://doi.org/10.5281/zenodo.17376717 — CC BY 4.0 |
-| Lubrano et al., 2026 Running_IMU | Lower-back, foot, shank IMU at high speeds, and OptoJump | **Excellent biomechanics contact-time reference** | 800 Hz research hardware and 15/20/25 km/h, different from a phone at easy pace; 97 MB .mat signals | https://github.com/MyriamLubrano/Running_IMU — MIT repo |
+| Ghaffarzadeh et al., 2026 | ~100 Hz waist Apple Watch and 1 kHz force plate; jogging/running, 492 curated trials / 395 triad-complete | Partial force-contact investigation; no complete count truth | IMU is a waist-worn **watch**, not a phone; `userAcceleration` is *gravity removed*, unlike GaitLab raw acceleration | https://doi.org/10.5281/zenodo.17376717 — CC BY 4.0 |
+| Lubrano et al., 2026 Running_IMU | Lower-back, foot, shank IMU at high speeds, and OptoJump | Stance/stride duration reference; no event timestamps in released MAT | 800 Hz research hardware and 15/20/25 km/h, different from a phone at easy pace; 97 MB .mat signals | https://github.com/MyriamLubrano/Running_IMU — MIT repo |
 | Baker et al., 2025 | 15 runners, pelvis/thigh/shank/foot IMU; forceplates for some runs | Terrain generalization and force comparison | 312 MB archive; force not available outdoors | https://doi.org/10.5281/zenodo.16541185 — inspect license on use |
 | AZI350 Self Phone Three Positions | Smartphone accelerometer, gyro, activity labels, 50–53 Hz trials including running/sitting | **Immediately replay into production GaitEngine** | Positions hand/pants/upper pocket, **not waist belt**, no true per-step contact labels | https://github.com/AZI350/Smartphone-IMU-Three-Positions-Dataset — CC BY-NC-ND 4.0 |
 | UCI HAR smartphones | 30 participants, waist-mounted phone, 50 Hz activity data | Negative controls and placement | **Walking only, no running**; processed window tensors rather than raw continuous timeline | https://archive.ics.uci.edu/dataset/240 |

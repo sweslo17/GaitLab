@@ -8,6 +8,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install Poetry and QA dependencies
+        run: |
+          pipx install poetry
+          poetry install --no-interaction
       - name: Check shell script syntax
         run: bash -n scripts/*.sh
       - uses: actions/setup-java@v4
@@ -20,18 +27,25 @@ jobs:
           channel: stable
           cache: true
       - name: Create platform runners and resolve packages
-        run: bash scripts/bootstrap.sh
+        run: poetry run bash scripts/bootstrap.sh
       - name: Ensure native bootstrap preserves tracked application code
         run: git diff --exit-code -- lib test pubspec.yaml README.md
       - run: flutter analyze
       - run: flutter test
-      - run: python3 -m unittest discover -s tools -p 'test_*.py' -v
+      - run: poetry run python -m unittest discover -s tools -p 'test_*.py' -v
       - name: Build Android debug APK
         run: flutter build apk --debug
   ios:
     runs-on: macos-15
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install Poetry and QA dependencies
+        run: |
+          pipx install poetry
+          poetry install --no-interaction
       - name: Check shell script syntax
         run: bash -n scripts/*.sh
       - uses: subosito/flutter-action@v2
@@ -40,7 +54,7 @@ jobs:
           channel: stable
           cache: true
       - name: Create platform runners and resolve packages
-        run: bash scripts/bootstrap.sh
+        run: poetry run bash scripts/bootstrap.sh
       - name: Ensure native bootstrap preserves tracked application code
         run: git diff --exit-code -- lib test pubspec.yaml README.md
       - run: flutter analyze
@@ -51,6 +65,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install Poetry and QA dependencies
+        run: |
+          pipx install poetry
+          poetry install --no-interaction
       - name: Check shell script syntax
         run: bash -n scripts/*.sh
       - uses: subosito/flutter-action@v2
@@ -59,7 +80,7 @@ jobs:
           channel: stable
           cache: true
       - name: Fetch and integrity-check small public trials (activity labels only)
-        run: python3 tools/public_datasets.py --fetch --out reports/public/source_manifest.json
+        run: poetry run python tools/public_datasets.py --fetch --out reports/public/source_manifest.json
       - name: Replay raw smartphone running trial through production Dart engine
         run: dart run tools/replay_public.dart --file data/public/azi350/running_pants.csv --activity running --out reports/public/running_pants.json
       - name: Replay sitting negative control through production Dart engine
