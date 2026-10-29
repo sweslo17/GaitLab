@@ -36,7 +36,7 @@ Android 重新訂閱感測器時，第一筆可能是上一段結尾的快取。
 
 ## 本機檢查狀態
 
-2026-10-29：`poetry run bash scripts/verify_local.sh` 通過，包含40個 Python 測試、Flutter 靜態分析與84個 Flutter 測試。新快取修正的建置與實機狀態以 VALIDATION.md 為準。GitHub CI 推送後才執行，不把本機結果當成 CI 通過。
+2026-10-29：`poetry run bash scripts/verify_local.sh` 通過，包含40個 Python 測試、Flutter 靜態分析與84個 Flutter 測試。新快取修正版 Android arm64 debug APK 建置也通過；尚未重新安裝及做實機重測。完整證據以 VALIDATION.md 為準。GitHub CI 推送後才執行，不把本機結果當成 CI 通過。
 
 ## 第一個待辦：修正版實機重測
 

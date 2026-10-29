@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-29",
+  "source_commit": "b89f967ecba90ea02733d8233c58fbf8fcaa4d50",
+  "local_verification": {
+    "command": "poetry run bash scripts/verify_local.sh",
+    "exit_code": 0,
+    "python_tests": 40,
+    "flutter_tests": 84,
+    "flutter_analyze": "PASS"
+  },
+  "android_build": {
+    "command": "flutter build apk --debug --target-platform android-arm64",
+    "exit_code": 0,
+    "status": "PASS",
+    "apk_sha256": "693d3b352aa0889a15b21029f75793a8c69f0ea6e71d4b8d3a5b31f9f79ebf37"
+  },
+  "final_source_device_retest": "NOT RUN",
+  "github_ci": {
+    "run_url": "https://github.com/sweslo17/GaitLab/actions/runs/40805357824",
+    "observed_status": "in_progress"
+  },
+  "raw_research_and_device_files_uploaded": false
+}
